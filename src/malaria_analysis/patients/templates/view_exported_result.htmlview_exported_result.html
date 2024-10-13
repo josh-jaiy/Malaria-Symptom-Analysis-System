@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Exported Plot Result</h2>
+
+  <!-- Display success or error messages -->
+  {% if messages %}
+    <div class="mt-3">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Check if the plot image is available (base64 or URL) -->
+  {% if plot_image_base64 %}
+    <div class="mt-4">
+      <h4>Plotted Result:</h4>
+      <img src="data:image/png;base64,{{ plot_image_base64 }}" alt="Plotted result image" class="img-fluid" />
+    </div>
+  {% elif plot_image_url %}
+    <div class="mt-4">
+      <h4>Plotted Result:</h4>
+      <img src="{{ plot_image_url }}" alt="Plotted result image" class="img-fluid" />
+    </div>
+  {% else %}
+    <div class="mt-4">
+      <div class="alert alert-warning">
+        No plot result available. Please generate and export the plot first.
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+{% endblock %}

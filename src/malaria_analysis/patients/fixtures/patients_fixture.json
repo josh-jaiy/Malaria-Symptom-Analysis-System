@@ -1,0 +1,23 @@
+[
+    {
+      "model": "patients.patient",
+      "pk": 1,
+      "fields": {
+        "age": 25,
+        "gender": "Male",
+        "malaria_type": "Plasmodium falciparum",
+        "symptoms": [1, 2, 3]
+      }
+    },
+    {
+      "model": "patients.patient",
+      "pk": 2,
+      "fields": {
+        "age": 32,
+        "gender": "Female",
+        "malaria_type": "Plasmodium vivax",
+        "symptoms": [4, 5]
+      }
+    }
+  ]
+  

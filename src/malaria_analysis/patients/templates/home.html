@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5 py-5">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-8 text-center">
+      <h1 class="display-4 text-primary fw-bold mb-3 animated fadeInDown">Malaria Symptom Analysis System</h1>
+      <p class="lead text-secondary mb-4 animated fadeInUp delay-1s">Effortlessly manage patient data and uncover symptom patterns with our innovative analysis tool.</p>
+      <a href="{% url 'add_patient' %}" class="btn btn-lg btn-primary shadow-lg rounded-pill px-5 py-3 animated pulse delay-2s">Add Patient Data</a>
+    </div>
+  </div>
+</div> 
+
+<!-- Additional Custom Styles -->
+<style>
+  /* Global Styling */
+  body {
+    background-color: #f7f9fc;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+  }
+
+  .container {
+    background: #fff;
+    padding: 60px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  h1 {
+    font-size: 3rem;
+    letter-spacing: 1px;
+  }
+
+  .lead {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #6c757d;
+  }
+
+  /* Button Styling */
+  .btn-primary {
+    background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+    border: none;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 15px rgba(50, 150, 200, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #2ecc71 0%, #3498db 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(50, 150, 200, 0.4);
+  }
+
+  /* Animations */
+  .animated {
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+  }
+
+  .fadeInDown {
+    animation-name: fadeInDown;
+  }
+
+  .fadeInUp {
+    animation-name: fadeInUp;
+  }
+
+  .pulse {
+    animation-name: pulse;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+    }
+
+    .btn-primary {
+      padding: 12px 40px;
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 2rem;
+    }
+
+    .lead {
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      padding: 10px 30px;
+    }
+
+    .container {
+      padding: 30px 15px;
+    }
+  }
+</style>
+{% endblock %}

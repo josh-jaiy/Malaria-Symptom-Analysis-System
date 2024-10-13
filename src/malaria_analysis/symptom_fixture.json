@@ -1,0 +1,27 @@
+[
+    {
+      "model": "patients.symptom",
+      "pk": 1,
+      "fields": {
+        "name": "Fever",
+        "description": "High body temperature"
+      }
+    },
+    {
+      "model": "patients.symptom",
+      "pk": 2,
+      "fields": {
+        "name": "Headache",
+        "description": "Persistent pain in the head"
+      }
+    },
+    {
+      "model": "patients.symptom",
+      "pk": 3,
+      "fields": {
+        "name": "Chills",
+        "description": "Feeling cold with shivering"
+      }
+    }
+  ]
+  

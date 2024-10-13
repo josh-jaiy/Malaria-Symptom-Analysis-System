@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card shadow-lg p-5 rounded-lg">
+    <div class="text-center">
+      <h2 class="display-6 fw-bold text-dark mb-4">Symptom Patterns Analysis</h2>
+      <p class="text-muted">Analyze co-occurrence patterns and visualize symptom distribution.</p>
+    </div>
+
+    <!-- Display error or success messages -->
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} mt-4">{{ message }}</div>
+      {% endfor %}
+    {% endif %}
+
+    <!-- Check if accuracy data is available -->
+    <div class="mt-4">
+      {% if accuracy %}
+        <div class="alert alert-info text-center">
+          <strong>Model Accuracy:</strong> {{ accuracy }}%
+        </div>
+      {% else %}
+        <div class="alert alert-warning text-center">
+          <p>No analysis results available. Ensure patient data is present for accurate analysis.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Pattern Visualizations -->
+    <div class="mt-5">
+      <h4 class="text-center">Symptom Patterns Visualization</h4>
+      <canvas id="symptomPieChart" width="400" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js Script for Pie Chart -->
+<script>
+  var ctx = document.getElementById('symptomPieChart').getContext('2d');
+  var symptomPieChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+              label: 'Symptom Distribution',
+              data: {{ data|safe }},
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)',
+                  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 206, 86, 0.6)',
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(255, 159, 64, 0.6)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: {
+                  display: true,
+                  position: 'top',
+                  labels: {
+                      font: {
+                          size: 14
+                      },
+                      padding: 20
+                  }
+              },
+              tooltip: {
+                  enabled: true,
+                  callbacks: {
+                      label: function(tooltipItem) {
+                          return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                      }
+                  }
+              }
+          }
+      }
+  });
+</script>
+
+<!-- Custom Styles -->
+<style>
+  body {
+    background-color: #f8f9fc;
+  }
+
+  .container {
+    max-width: 800px;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    border: none;
+  }
+
+  h2 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .btn-primary {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .alert {
+    border-radius: 12px;
+  }
+
+  canvas {
+    max-width: 100%;
+  }
+</style>
+{% endblock %}
